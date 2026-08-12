@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f0b15;
+  --foreground: #fce7f3;
+  --card-bg: rgba(25, 16, 36, 0.7);
+  --card-border: rgba(244, 114, 182, 0.25);
+  --card-border-hover: rgba(244, 114, 182, 0.5);
+  --primary-rose: #e11d48;
+  --accent-pink: #f472b6;
+  --accent-amber: #f59e0b;
+  --accent-blue: #3b82f6;
+  --glow-pink: rgba(225, 29, 72, 0.35);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.light {
+  --background: #fff5f7;
+  --foreground: #4c0519;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(244, 114, 182, 0.35);
+  --card-border-hover: rgba(225, 29, 72, 0.5);
+  --glow-pink: rgba(244, 114, 182, 0.25);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-serif-romantic {
+  font-family: 'Cormorant Infant', serif;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 12px 40px 0 var(--glow-pink);
+}
+
+.glass-card-interactive {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.glass-card-interactive:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-pink);
+  box-shadow: 0 10px 30px -10px var(--glow-pink);
+}
+
+/* Custom Gradients */
+.text-gradient-romantic {
+  background: linear-gradient(135deg, #fb7185 0%, #e11d48 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-romantic {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #9f1239 100%);
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Floating Heart & Glow Keyframe Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(4deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.15);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartBeat 2.5s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 11, 21, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(225, 29, 72, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.8);
 }
